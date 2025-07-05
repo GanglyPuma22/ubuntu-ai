@@ -1,0 +1,38 @@
+name: ai
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - ipykernel
+  - jupyterlab
+  - notebook
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - opencv
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - tensorflow
+  - fastapi
+  - uvicorn
+  - xgboost
+  - lightgbm
+  - pip:
+      - transformers
+      - datasets
+      - accelerate
+      - bitsandbytes
+      - deepspeed
+      - wandb
+      - mlflow
+      - gradio
+      - langchain
+      - llama-index
