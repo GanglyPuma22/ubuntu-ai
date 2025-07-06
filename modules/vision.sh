@@ -1,19 +1,13 @@
 #!/bin/bash
-echo "🖼️ Installing Vision module..."
+echo "Installing Vision module..."
 
-
-# Redirect model cache to ./models folder
-export PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-export HF_HOME=$PROJECT_ROOT/models/huggingface
-export TRANSFORMERS_CACHE=$HF_HOME/transformers
-export TORCH_HOME=$PROJECT_ROOT/models/torch
-
-conda activate ai
 pip install torchvision
 
+#TODO Have options for pretrained vs no pretrained weights?s
 python3 - <<EOF
-from torchvision.models import resnet18
-resnet18(pretrained=True)
+from torchvision.models import resnet18, ResNet18_Weights
+# Load model with pretrained weights
+resnet18(weights=ResNet18_Weights.DEFAULT)
 EOF
 
-echo "✅ Vision module installed."
+echo "Vision module installed."
