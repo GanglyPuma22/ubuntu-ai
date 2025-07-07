@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo "Installing LLM module..."
 
 pip install transformers accelerate bitsandbytes

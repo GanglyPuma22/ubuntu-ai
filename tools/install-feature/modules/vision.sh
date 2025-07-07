@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo "Installing Vision module..."
 
 pip install torchvision

@@ -7,6 +7,7 @@ export HF_HOME=$PROJECT_ROOT/models/huggingface
 export TRANSFORMERS_CACHE=$HF_HOME/transformers
 export TORCH_HOME=$PROJECT_ROOT/models/torch
 
+#TODO NEEDS WORK
 
 TYPE=$1
 MODEL=$2

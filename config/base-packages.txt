@@ -1,0 +1,8 @@
+tree
+htop
+jq
+curl
+wget
+unzip
+git
+build-essential

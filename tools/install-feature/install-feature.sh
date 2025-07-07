@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+#Feature this script should install
 FEATURE=$1
 
 if [ -z "$UBUNTU_AI_HOME" ]; then
@@ -10,7 +11,6 @@ fi
 
 # Redirect model cache to ./models folder
 export HF_HOME=$UBUNTU_AI_HOME/models/huggingface
-export TRANSFORMERS_CACHE=$HF_HOME/transformers
 export TORCH_HOME=$UBUNTU_AI_HOME/models/torch
 
 # Source conda shell functions
@@ -24,15 +24,17 @@ fi
 #Activate the AI conda environment so all sub scripts that install models do so in the same environment
 conda activate ai
 
+INSTALL_MODULES_DIR="$(dirname "$0")/modules"
+
 case "$FEATURE" in
   --nlp)
-    bash "$(dirname "$0")/../modules/nlp.sh"
+    bash "$INSTALL_MODULES_DIR/nlp.sh"
     ;;
   --vision)
-    bash "$(dirname "$0")/../modules/vision.sh"
+    bash "$INSTALL_MODULES_DIR/vision.sh"
     ;;
   --llm)
-    bash "$(dirname "$0")/../modules/llm.sh"
+    bash "$INSTALL_MODULES_DIR/llm.sh"
     ;;
   *)
     echo "Usage: install-feature [--nlp|--vision|--llm]"
