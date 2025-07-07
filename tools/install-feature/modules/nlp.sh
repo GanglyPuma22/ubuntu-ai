@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo "Installing NLP module..."
 
 pip install transformers datasets sentence-transformers
