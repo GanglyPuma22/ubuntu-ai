@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-if [ -z "$UBUNTU_AI_CONFIG_HOME" ]; then
-  echo "UBUNTU_AI_CONFIG_HOME not set. Please run setup-ai.sh first from project root or restart your terminal."
+if [ -z "$UBUNTU_AI_HOME" ]; then
+  echo "UBUNTU_AI_HOME not set. Please run setup-ai.sh first from project root or restart your terminal."
   exit 1
 fi
 
@@ -32,7 +32,7 @@ else
   echo "Running in interactive mode (prompts enabled)."
 fi
 
-PACKAGE_LIST_FILE="$UBUNTU_AI_CONFIG_HOME/base-packages.txt"
+PACKAGE_LIST_FILE="$UBUNTU_AI_HOME/config/base-packages.txt"
 
 if [ ! -f "$PACKAGE_LIST_FILE" ]; then
   echo "Package list not found at $PACKAGE_LIST_FILE"

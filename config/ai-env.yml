@@ -36,3 +36,4 @@ dependencies:
       - gradio
       - langchain
       - llama-index
+      - huggingface_hub

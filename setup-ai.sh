@@ -4,15 +4,13 @@ set -e
 # Set UBUNTU_AI_HOME to the current directory
 # Assume the script is run from the project root
 export UBUNTU_AI_HOME="$(pwd)"
-export UBUNTU_AI_CONFIG_HOME="$UBUNTU_AI_HOME/config"
 
-# Add UBUNTU_AI_HOME and UBUNTU_AI_CONFIG_HOME to ~/.bashrc if not already present
+# Add UBUNTU_AI_HOME to ~/.bashrc if not already present
 if ! grep -q 'export UBUNTU_AI_HOME=' ~/.bashrc; then
   echo "" >> ~/.bashrc
   echo "# Set ubuntu-ai distro project root" >> ~/.bashrc
   echo "export UBUNTU_AI_HOME=\"$UBUNTU_AI_HOME\"" >> ~/.bashrc
-  echo "export UBUNTU_AI_CONFIG_HOME=\"$UBUNTU_AI_CONFIG_HOME\"" >> ~/.bashrc
-  echo "Added UBUNTU_AI_HOME and UBUNTU_AI_CONFIG_HOME to ~/.bashrc"
+  echo "Added UBUNTU_AI_HOME to ~/.bashrc"
 else
   echo "UBUNTU_AI_HOME already defined in ~/.bashrc"
 fi
@@ -29,7 +27,7 @@ if [[ "$install_cli" =~ ^[Yy]$ || -z "$install_cli" ]]; then
   bash "$UBUNTU_AI_HOME/scripts/install-tools.sh"
 else
   echo "Skipping CLI tools installation. You can run './scripts/install-tools.sh' (-i for interactivity) later to install the recommended tools."
-  echo "WARNING: Some scripts may require these tools to function properly."
+  echo "WARNING: Some scripts may require CLI tools to function properly."
 fi
 
 #Conda install automatically handles bashrc update to source conda on shell startup
@@ -45,7 +43,7 @@ fi
 echo "Creating AI conda environment..."
 #Source conda to ensure the command is available
 source "$HOME/miniconda3/etc/profile.d/conda.sh"
-conda env create -f "$UBUNTU_AI_CONFIG_HOME/ai-env.yml" || echo "Environment may already exist."
+conda env create -f "$UBUNTU_AI_HOME/config/ai-env.yml" || echo "Environment may already exist."
 conda init bash
 
 #After initializing conda, ask user if they want to auto-activate the 'ai' environment by adding it to bashrc
@@ -64,6 +62,18 @@ if [[ "$auto_activate" =~ ^[Yy]$ || -z "$auto_activate" ]]; then
 else
   echo "Skipping auto-activation of 'ai' environment in new terminals."
   echo "Be careful to activate it manually with 'conda activate ai' when needed."
+fi
+
+#Section to login to huggingface
+echo ""
+read -p "Do you want to authenticate with Hugging Face now? - this is recommended [Y/n]: " HF_LOGIN
+if [[ "$HF_LOGIN" =~ ^[Yy]$ ]]; then
+  echo "Launching Hugging Face login ... token will be saved at ~/.huggingface/token"
+  echo "You can skip adding the token as a Git credential unless you plan to push or pull from Hugging Face repos using Git."
+  huggingface-cli login
+  echo "Login complete. Token saved!"
+else
+  echo "Skipping Hugging Face login. You may be prompted later during model download."
 fi
 
 conda activate ai
