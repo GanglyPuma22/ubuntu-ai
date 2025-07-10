@@ -5,11 +5,11 @@ echo "Installing Vision module..."
 
 pip install torchvision
 
-#TODO Have options for pretrained vs no pretrained weights?s
+# Note: Python below downloads weights but avoids instantiating full model
 python3 - <<EOF
 from torchvision.models import resnet18, ResNet18_Weights
-# Load model with pretrained weights
-resnet18(weights=ResNet18_Weights.DEFAULT)
+weights = ResNet18_Weights.DEFAULT
+weights.get_state_dict(progress=True)
 EOF
 
 echo "Vision module installed."

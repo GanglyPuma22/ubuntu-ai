@@ -46,6 +46,7 @@ if [ -d "$TORCH_HUB_HOME" ]; then
 fi
 
 print_line
+du -hs "$MODELS_DIR"
 read -p "Are you sure you want to delete all models under '$MODELS_DIR'? [y/N] " confirm
 if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
   echo "Aborted by user."
