@@ -6,3 +6,4 @@ wget
 unzip
 git
 build-essential
+ffmpeg

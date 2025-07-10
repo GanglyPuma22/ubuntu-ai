@@ -30,6 +30,17 @@ else
   echo "WARNING: Some scripts may require CLI tools to function properly."
 fi
 
+#Install Rust to support certain models like Whisper
+echo "Installing Rust toolchain..."
+if ! command -v rustc &> /dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  source $HOME/.cargo/env #Source incase we need to use Rust immediately, like pacakge installs
+else
+  echo "Rust toolchain already installed. Updating..."
+  rustup update
+fi
+
+
 #Conda install automatically handles bashrc update to source conda on shell startup
 if [ ! -d "$HOME/miniconda3" ]; then
   echo "Installing Miniconda..."
