@@ -7,7 +7,7 @@ ENV PATH="/opt/conda/bin:$PATH"
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
     bash miniconda.sh -b -p /opt/conda && rm miniconda.sh
 
-COPY ai-env.yml /tmp/ai-env.yml
-RUN conda init && conda env create -f /tmp/ai-env.yml
+COPY ai-env.yaml /tmp/ai-env.yaml
+RUN conda init && conda env create -f /tmp/ai-env.yaml
 
 CMD ["bash"]

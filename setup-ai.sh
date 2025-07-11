@@ -54,7 +54,7 @@ fi
 echo "Creating AI conda environment..."
 #Source conda to ensure the command is available
 source "$HOME/miniconda3/etc/profile.d/conda.sh"
-conda env create -f "$UBUNTU_AI_HOME/config/ai-env.yml" || echo "Environment may already exist."
+conda env create -f "$UBUNTU_AI_HOME/config/ai-env.yaml" || echo "Environment may already exist."
 conda init bash
 
 #After initializing conda, ask user if they want to auto-activate the 'ai' environment by adding it to bashrc

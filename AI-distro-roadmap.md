@@ -7,7 +7,7 @@ This document tracks the progress of key features in your AI-focused Ubuntu dist
 
 ## ✅ Base System Setup
 
-- [x] Conda environment with AI stack (`ai-env.yml`)
+- [x] Conda environment with AI stack (`ai-env.yaml`)
 - [x] Project repo structure with `setup-ai.sh`, `Dockerfiles/`, `scripts/`, `notebooks/`
 - [x] JupyterLab launch script
 - [x] GitHub repo + SSH setup
